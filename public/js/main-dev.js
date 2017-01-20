@@ -20,11 +20,21 @@
     var vx = _ref.vx;
     var vy = _ref.vy;
     var m = _ref.m;
+    var borderWall = Math.floor(Math.random() * 4);
 
-    this.x = defined(x, Math.random() * 100);
-    if (this.x > 50) {this.x = this.garden.height - this.x + 50;}
-    this.y = defined(y, Math.random() * 100);
-    if (this.y > 50) {this.y = this.garden.height - this.y + 50;}
+    if (borderWall === 0) {
+      this.x = defined(x, Math.random() * this.garden.width);
+      this.y = defined(y, Math.random() * 50);
+    }else if (borderWall === 1) {
+      this.x = defined(x, this.garden.width - Math.random() * 50);
+      this.y = defined(y, Math.random() * this.garden.height);
+    }else if (borderWall === 2) {
+      this.x = defined(x, Math.random() * this.garden.width);
+      this.y = defined(y, this.garden.height - Math.random() * 50);
+    } else {
+      this.x = defined(x, Math.random() * 50);
+      this.y = defined(y, Math.random() * this.garden.height);
+    }
     this.vx = defined(vx, Math.random() * 0.5 - 0.25);
     this.vy = defined(vy, Math.random() * 0.5 - 0.25);
     this.m = defined(m, Math.random() * 2.5 + 0.5);
