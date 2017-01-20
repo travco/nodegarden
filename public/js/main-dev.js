@@ -21,8 +21,10 @@
     var vy = _ref.vy;
     var m = _ref.m;
 
-    this.x = defined(x, Math.random() * this.garden.width);
-    this.y = defined(y, Math.random() * this.garden.height);
+    this.x = defined(x, Math.random() * 100);
+    if (this.x > 50) {this.x = this.garden.height - this.x + 50;}
+    this.y = defined(y, Math.random() * 100);
+    if (this.y > 50) {this.y = this.garden.height - this.y + 50;}
     this.vx = defined(vx, Math.random() * 0.5 - 0.25);
     this.vy = defined(vy, Math.random() * 0.5 - 0.25);
     this.m = defined(m, Math.random() * 2.5 + 0.5);
@@ -58,6 +60,7 @@
   Node.prototype.collideTo = function (node) {
     node.vx = node.m * node.vx / (this.m + node.m) + this.m * this.vx / (this.m + node.m);
     node.vy = node.m * node.vy / (this.m + node.m) + this.m * this.vy / (this.m + node.m);
+    node.m += this.m;
 
     this.reset();
   };
