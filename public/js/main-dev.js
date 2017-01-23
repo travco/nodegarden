@@ -70,7 +70,7 @@
   Node.prototype.collideTo = function (node) {
     node.vx = node.m * node.vx / (this.m + node.m) + this.m * this.vx / (this.m + node.m);
     node.vy = node.m * node.vy / (this.m + node.m) + this.m * this.vy / (this.m + node.m);
-    node.m += this.m;
+    node.m = Math.sqrt( Math.pow(this.m * 0.5, 2) + Math.pow(this.m * 0.5, 2) ) * 2;
 
     this.reset();
   };
